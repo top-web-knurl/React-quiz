@@ -9,9 +9,14 @@
 .QuizWrapper{
     max-width: 630px;
     margin: 0 auto;
+    width: 100%;
     padding: 15px;
 }
 .Quiz h1{
     color: #FFF373;
-    margin: 10px;
+    font-size: 32px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    font-weight: bold;
+    margin: 10px 15px 25px 0;
 }

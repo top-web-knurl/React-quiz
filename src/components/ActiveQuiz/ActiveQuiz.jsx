@@ -1,18 +1,19 @@
 import React from "react";
 import classes from './ActiveQuiz.module.css';
+import AnswersList from "./AnswersList/AnswersList";
 
 const ActiveQuiz = (props) => {
-    // const {ActiveQuiz} = props;
-    const { ActiveQuiz, Question } = classes;
+    const { answers } = props;
+    const { ActiveQuiz, Question, QuestionNumber, QuestionText } = classes;
 
     return (
         <div className={ActiveQuiz}>
             <div className={Question}>
                 <div>
-                    <span>
-                        1.&nbsp;
+                    <span className={QuestionNumber}>
+                        1.
                     </span>
-                    <span>
+                    <span className={QuestionText}>
                         Как дела?
                     </span>
                 </div>
@@ -21,11 +22,9 @@ const ActiveQuiz = (props) => {
                 </div>
             </div>
 
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
+            <AnswersList
+                answers={answers}
+            />
         </div>
     )
 

@@ -1,0 +1,19 @@
+.AnswerItem{
+    border: 1px solid #FFF373;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .3s linear;
+    transition-delay: .15s;
+}
+
+.AnswerItem:hover{
+    transition: .2s ease;
+    box-shadow: 0px 0px 2px 1px #fff373;
+    background: rgba(60, 3, 107, 0.26);
+}
+.AnswerItem:active{
+    transition: .1s ease;
+    transform: scale(.98);
+}
