@@ -3,7 +3,7 @@ import classes from './ActiveQuiz.module.css';
 import AnswersList from "./AnswersList/AnswersList";
 
 const ActiveQuiz = (props) => {
-    const { answers, question, onAnswerClick } = props;
+    const { answers, question, onAnswerClick, quizLength, answerNumber } = props;
     const { ActiveQuiz, Question, QuestionNumber, QuestionText } = classes;
 
     return (
@@ -11,14 +11,14 @@ const ActiveQuiz = (props) => {
             <div className={Question}>
                 <div>
                     <span className={QuestionNumber}>
-                        1.
+                        {answerNumber}.
                     </span>
                     <span className={QuestionText}>
                         {question}
                     </span>
                 </div>
                 <div>
-                    4/4
+                    {answerNumber}/{quizLength}
                 </div>
             </div>
 

@@ -7,14 +7,14 @@
     background: linear-gradient(to right, #4A00E0, #8E2DE2);
 }
 .QuizWrapper{
-    max-width: 630px;
+    max-width: 660px;
     margin: 0 auto;
     width: 100%;
     padding: 15px;
 }
 .Quiz h1{
     color: #FFF373;
-    font-size: 32px;
+    font-size: 24px;
     letter-spacing: 2px;
     line-height: 1.2;
     font-weight: bold;
