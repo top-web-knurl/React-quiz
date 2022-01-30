@@ -6,6 +6,7 @@ class Quiz extends Component {
 
     state = {
         activeQuestion: 0,
+        answerState: null, //информация о текущем клике пользователя
         quiz: [
             {
                 quizId: 1,
@@ -33,11 +34,38 @@ class Quiz extends Component {
     }
 
     onAnswerClickHandler = (answerId) => {
-        this.setState({
-            activeQuestion: this.state.activeQuestion + 1
-        })
+        const question = this.state.quiz[this.state.activeQuestion]//текущий вопрос
+        if (question.rightAnsverId === answerId) {//проверяем правильный ли ответ
+            this.setState({
+                answerState: { [answerId]: 'succsess' }
+            })
+            const timeout = window.setTimeout(() => {
+
+                if (this.isQuizFinished()) {
+                    console.log('finished');
+                    return
+                } else {
+
+                    this.setState({
+                        activeQuestion: this.state.activeQuestion + 1,
+                        answerState: null
+                    })
+
+                }
+                window.clearTimeout(timeout)
+            }, 950)
+
+        } else {
+            this.setState({
+                answerState: { [answerId]: 'fail' }
+            })
+        }
     }
-    
+
+    isQuizFinished() {
+        return this.state.activeQuestion + 1 === this.state.quiz.length
+    }
+
     render() {
         const { Quiz, QuizWrapper } = classes;
         return (
@@ -51,6 +79,7 @@ class Quiz extends Component {
                         answers={this.state.quiz[this.state.activeQuestion].answers}
                         quizLength={this.state.quiz.length}
                         answerNumber={this.state.activeQuestion + 1}
+                        state={this.state.answerState}
                     />
                 </div>
             </div>

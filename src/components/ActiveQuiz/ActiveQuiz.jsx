@@ -3,7 +3,7 @@ import classes from './ActiveQuiz.module.css';
 import AnswersList from "./AnswersList/AnswersList";
 
 const ActiveQuiz = (props) => {
-    const { answers, question, onAnswerClick, quizLength, answerNumber } = props;
+    const { answers, question, onAnswerClick, quizLength, answerNumber, state } = props;
     const { ActiveQuiz, Question, QuestionNumber, QuestionText } = classes;
 
     return (
@@ -25,6 +25,7 @@ const ActiveQuiz = (props) => {
             <AnswersList
                 onAnswerClick={onAnswerClick}
                 answers={answers}
+                state={state}
             />
         </div>
     )

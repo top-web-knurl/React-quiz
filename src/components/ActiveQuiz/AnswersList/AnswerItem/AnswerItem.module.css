@@ -17,3 +17,11 @@
     transition: .1s ease;
     transform: scale(.98);
 }
+.AnswerItem.succsess{
+    border-color: rgb(64, 180, 35);
+    box-shadow: 0px 0px 2px 2px #2af366d3;
+}
+.AnswerItem.fail{
+    border-color: rgba(250, 42, 42, 0.877);
+    box-shadow: 0px 0px 2px 2px #ce1e1efb;
+}
