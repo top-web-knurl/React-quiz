@@ -4,7 +4,7 @@ import AnswerItem from "./AnswerItem/AnswerItem";
 
 const AnswersList = props => {
     const { AnswersList } = classes;
-    const { answers } = props;
+    const { answers, onAnswerClick } = props;
     return (
         <ul className={AnswersList}>
             {answers.map((answer, index) => {
@@ -12,6 +12,7 @@ const AnswersList = props => {
                     <AnswerItem
                         key={index}
                         answer={answer}
+                        onAnswerClick={onAnswerClick}
                     />
                 )
             })}

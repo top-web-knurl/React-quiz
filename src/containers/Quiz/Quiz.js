@@ -7,24 +7,32 @@ class Quiz extends Component {
     state = {
         quiz: [
             {
+                question: 'Как бы ты назвал свою домашнюю черепашку?',
+                rightAnsverId: 3,
                 answers: [
-                    {text: 'Вопрос 1'},
-                    {text: 'Вопрос 2'},
-                    {text: 'Вопрос 3'},
-                    {text: 'Вопрос ?'},
+                    { text: 'Леонардо', id: 1 },
+                    { text: 'Рафаэль', id: 2 },
+                    { text: 'Микилянджело', id: 3 },
+                    { text: 'Донатело', id: 4 },
                 ]
             }
         ]
     }
 
+    onAnswerClickHandler = (answerId) => {
+        console.log(answerId);
+    }
     render() {
         const { Quiz, QuizWrapper } = classes;
         return (
             <div className={Quiz}>
-              
+
                 <div className={QuizWrapper}>
-                <h1>Кто ты из черепашек-ниндзя?</h1>
-                    <ActiveQuiz answers={this.state.quiz[0].answers}/>
+                    <h1>Ответьте на все вопросы</h1>
+                    <ActiveQuiz
+                    onAnswerClick={this.onAnswerClickHandler}
+                        question={this.state.quiz[0].question}
+                        answers={this.state.quiz[0].answers} />
                 </div>
             </div>
         )
