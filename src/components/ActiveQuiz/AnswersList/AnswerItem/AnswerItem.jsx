@@ -6,7 +6,7 @@ const AnswersItem = props => {
     const { AnswerItem } = classes;
     const { answer, onAnswerClick, state } = props;
     const cls = [AnswerItem];
-    console.log(AnswerItem);
+
     if(state){
         cls.push(classes[state])
     }

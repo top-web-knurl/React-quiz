@@ -34,6 +34,16 @@ class Quiz extends Component {
     }
 
     onAnswerClickHandler = (answerId) => {
+        if(this.state.answerState){
+            //берем единственное значение для проверки, если succsess то выходим
+            // что бы при двойном клике не пропускало следущий вопрос
+            const key = Object.values(this.state.answerState)[0];
+     
+            if(key === 'succsess') {
+                return
+            }
+
+        }
         const question = this.state.quiz[this.state.activeQuestion]//текущий вопрос
         if (question.rightAnsverId === answerId) {//проверяем правильный ли ответ
             this.setState({
@@ -42,7 +52,6 @@ class Quiz extends Component {
             const timeout = window.setTimeout(() => {
 
                 if (this.isQuizFinished()) {
-                    console.log('finished');
                     return
                 } else {
 
@@ -68,9 +77,10 @@ class Quiz extends Component {
 
     render() {
         const { Quiz, QuizWrapper } = classes;
+        
         return (
             <div className={Quiz}>
-
+               
                 <div className={QuizWrapper}>
                     <h1>Как хорошо ты знаешь "черепашек нинздзя"</h1>
                     <ActiveQuiz
