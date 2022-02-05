@@ -19,7 +19,9 @@
     border-radius: 6px;
     margin-bottom: 10px;
 }
-
+.FinishedQuiz ul li span{
+    margin-left: 5px;
+}
 .FinishedQuiz ul li svg {
     margin-left: 10px;
 }
