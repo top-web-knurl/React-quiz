@@ -39,7 +39,7 @@ class Quiz extends Component {
     onAnswerClickHandler = answerId => {
 
         if (this.state.answerState) {
-            //берем единственное значение для проверки, если succsess то выходим
+            //берем единственное значение для проверки, если success то выходим
             // что бы при двойном клике не пропускало следущий вопрос
             const values = Object.values(this.state.answerState)[0]
             if (values === 'success') {
@@ -50,20 +50,17 @@ class Quiz extends Component {
         const question = this.state.quiz[this.state.activeQuestion];//текущий вопрос
         const results = this.state.results;
 
-        if (results[question.quizId] === 'succsess') {
-            return false
-        }
-
+       
         if (question.rightAnsverId === answerId) {//проверяем правильный ли ответ
 
 
             if (!results[question.quizId]) {
-                results[question.quizId] = 'succsess';
+                results[question.quizId] = 'success';
             }
 
             this.setState({
                 answerState: {
-                    [answerId]: 'succsess',
+                    [answerId]: 'success',
                 },
                 results
             })
