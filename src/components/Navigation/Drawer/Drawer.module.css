@@ -34,7 +34,7 @@
     text-decoration: none;
     line-height: 1.1;
     color: #4A00E0;
-    transition: .2s linear;
+    transition: .12s linear;
 }
 .Drawer ul li a::after {
     content: "";
@@ -46,9 +46,9 @@
     height: 3px;
     background: linear-gradient(to right, #4A00E0, #8E2DE2);
     opacity: 0;
-    transition: .15s linear;
-    transition-delay: .15s;
+    transition: .12s linear;
     transform: scaleX(0);
+    border-radius: 30%;
 }
 .Drawer ul li a:hover,
 .Drawer ul li a:active,

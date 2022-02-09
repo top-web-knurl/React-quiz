@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import classes from './Drawer.module.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const links = [
     1, 2, 3
@@ -19,14 +18,18 @@ class Drawer extends Component {
     }
 
     render() {
-        const { isOpen } = this.props;
+        const { isOpen, onClose } = this.props;
         const { Drawer, Close } = classes;
         return (
-            <nav className={`${Drawer} ${isOpen ? null : Close} `}>
+            <>
+                {isOpen ? <Backdrop onClick={onClose} /> : null}
+                <nav className={`${Drawer} ${isOpen ? null : Close} `}>
                 <ul>
                     {this.renderLink()}
                 </ul>
             </nav>
+            </>
+           
         )
     }
 
