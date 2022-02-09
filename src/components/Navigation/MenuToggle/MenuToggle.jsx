@@ -11,7 +11,7 @@ const MenuToggle = props => {
     return (
          <FontAwesomeIcon
          className={`${MenuToggle} ${isOpen ? openCls : null}`}
-         icon={isOpen ? faBars : faTimes}
+         icon={isOpen ? faTimes : faBars}
          onClick={onToggle}
          size="lg"
      />

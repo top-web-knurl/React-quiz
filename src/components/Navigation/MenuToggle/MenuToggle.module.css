@@ -1,6 +1,6 @@
 .MenuToggle{
     position: fixed;
-    top: 40px;
+    top: 20px;
     left: 40px;
     cursor: pointer;
     font-size: 32px;
@@ -8,12 +8,13 @@
     filter: drop-shadow(0px 1px  2px rgba(255, 243, 115, .3));
     z-index: 99;
     transition: all .23s ease;
+  
 }
 .MenuToggle:hover,
 .MenuToggle:active,
 .MenuToggle:focus{
     filter: none;
-    transition: .2s ease;
+    transition: .22s ease-in;
     opacity: .9;
 }
 .MenuToggle:active{
@@ -21,4 +22,5 @@
 }
 .MenuToggle.openCls{
     left: 320px;
+    color: #ff0000;
 }

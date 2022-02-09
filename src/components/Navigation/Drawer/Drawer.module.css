@@ -1,0 +1,69 @@
+.Drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 300px;
+    padding: 45px 35px;
+    background: #EDE574;
+    background: -webkit-linear-gradient(to top, #E1F5C4, #EDE574);  
+    background: linear-gradient(to top, #E1F5C4, #EDE574);
+    transform: translateX(0);
+    transition:  .22s ease-in;
+    z-index: 98;
+    display: flex;
+    justify-content: center;
+}
+
+.Close{
+    transform: translateX(-300px);
+}
+
+.Drawer ul li{
+    margin-bottom: 15px;
+   
+}
+
+.Drawer ul li a{
+    display: inline-block;
+    font-size: 26px;
+    position: relative;
+    padding: 5px 0;
+    margin: 0 15px;
+    text-decoration: none;
+    line-height: 1.1;
+    color: #4A00E0;
+    transition: .2s linear;
+}
+.Drawer ul li a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+    opacity: 0;
+    transition: .15s linear;
+    transition-delay: .15s;
+    transform: scaleX(0);
+}
+.Drawer ul li a:hover,
+.Drawer ul li a:active,
+.Drawer ul li a:focus,
+.Drawer ul li a.active{
+    color: #8E2DE2;
+    outline: none;
+}
+.Drawer ul li a:active{
+    transition: .1s ease-in;
+    transform: translateY(4px);
+}
+.Drawer ul li a:hover::after,
+.Drawer ul li a:focus::after{
+    opacity: 1;
+    bottom: 0;
+    transform: scaleX(1);
+}
