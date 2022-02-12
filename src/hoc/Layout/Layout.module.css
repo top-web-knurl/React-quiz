@@ -1,7 +1,11 @@
-.Layout{
+.Layout {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    background: #8E2DE2;
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+    color: #FFF373;
 }
 .Layout main{
     display: flex;

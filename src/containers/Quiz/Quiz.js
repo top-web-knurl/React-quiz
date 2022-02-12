@@ -43,16 +43,15 @@ class Quiz extends Component {
             // что бы при двойном клике не пропускало следущий вопрос
             const values = Object.values(this.state.answerState)[0]
             if (values === 'success') {
-                return
+                return;
             }
 
         }
         const question = this.state.quiz[this.state.activeQuestion];//текущий вопрос
         const results = this.state.results;
 
-       
-        if (question.rightAnsverId === answerId) {//проверяем правильный ли ответ
 
+        if (question.rightAnsverId === answerId) {//проверяем правильный ли ответ
 
             if (!results[question.quizId]) {
                 results[question.quizId] = 'success';
@@ -65,7 +64,6 @@ class Quiz extends Component {
                 results
             })
 
-
             const timeout = window.setTimeout(() => {
 
                 if (this.isQuizFinished()) {
@@ -77,16 +75,11 @@ class Quiz extends Component {
                         activeQuestion: this.state.activeQuestion + 1,
                         answerState: null
                     })
-
                 }
-
                 window.clearTimeout(timeout);
             }, 950)
 
-
-
         } else {
-
             results[question.quizId] = 'fail';
             this.setState({
                 answerState: {
@@ -95,14 +88,13 @@ class Quiz extends Component {
                 results
             })
         }
-
     }
 
     isQuizFinished() {
         return this.state.activeQuestion + 1 === this.state.quiz.length
     }
 
-    onRestartQuiz =  ()=> {
+    onRestartQuiz = () => {
         this.setState({
             results: {},
             isFinished: false,
@@ -110,13 +102,11 @@ class Quiz extends Component {
             answerState: null,
         })
     }
-    
+
     render() {
         const { Quiz, QuizWrapper } = classes;
-
         return (
             <div className={Quiz}>
-
                 <div className={QuizWrapper}>
                     <h1>Как хорошо ты знаешь "черепашек нинздзя"</h1>
                     {
@@ -135,7 +125,6 @@ class Quiz extends Component {
                                 state={this.state.answerState}
                             />
                     }
-
                 </div>
             </div>
         )
