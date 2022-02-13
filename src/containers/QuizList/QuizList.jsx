@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import classes from './QuizList.module.css'
 class QuizList extends Component {
-  constructor(props,classes) {
-    super(props);
-    const {test} = props;
-  }
 
   renderQuizes() {
     return [1,2,3].map((quiz, index) => {

@@ -3,6 +3,7 @@ import classes from './FinishedQuiz.module.css';
 import Button from "../UI/Button/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
 const FinishedQuiz = props => {
     const { results, quiz, onRestartQuiz } = props;
     const { FinishedQuiz, success, fail } = classes;
@@ -39,7 +40,8 @@ const FinishedQuiz = props => {
 
             <nav>
                 <Button onClick={onRestartQuiz}>Повторить</Button>
-                <Button>Перейти в список тестов</Button>
+                <Button><Link to='/quiz'>Перейти в список тестов</Link></Button>
+                
             </nav>
         </div>
     )
