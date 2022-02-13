@@ -1,10 +1,37 @@
 import React, { Component } from "react";
-
+import { NavLink } from "react-router-dom";
+import classes from './QuizList.module.css'
 class QuizList extends Component {
+  constructor(props,classes) {
+    super(props);
+    const {test} = props;
+  }
+
+  renderQuizes() {
+    return [1,2,3].map((quiz, index) => {
+      return (
+        <li 
+        key={index}
+        >
+          <NavLink to={'/quiz/' + quiz}>
+          Test {index}
+          </NavLink>
+        </li>
+      )
+    })
+  }
 
   render() {
+    const { QuizList, QuizListWrapper } = classes;
     return (
-        <div><h1>QuizList</h1></div>
+      <div className={QuizList}>
+        <div className={QuizListWrapper}>
+        <h1>Список тестов</h1>
+        <ul>
+          {this.renderQuizes()}
+        </ul>
+        </div>
+      </div>
     );
   }
 }
