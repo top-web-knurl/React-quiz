@@ -1,0 +1,60 @@
+.Form {
+    padding: 15px;
+    color: #FFF373;
+    box-shadow: 0px 0px 4px 2px #fff373;
+    border: 4px solid #FFF373;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.Form fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+    margin: 0;
+    padding: 10px 5px;
+}
+
+.Form fieldset:last-child {
+    border: none;
+}
+
+.Form fieldset label {
+    padding-right: 15px;
+    flex: auto;
+}
+
+.Form fieldset input {
+    flex: auto;
+    min-width: 200px;
+    width: 100%;
+}
+
+.Form legend {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0 0 10px;
+}
+
+.Form input {
+    display: inline-block;
+    font-size: 16px;
+    color: #FFF373;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 1px 1px #fff373;
+    border: 1px solid #FFF373;
+    border-radius: 10px;
+    height: 45px;
+    margin: 0 10px 10px 0;
+    padding: 5px 15px;
+}
+
+.Form input:focus {
+    outline: none;
+    border-color: rgba(156, 42, 250, 0.9);
+    box-shadow: 0px 0px 1px 1px rgba(156, 42, 250, 0.7);
+}
+
+.Form input::placeholder {
+    color: #FFF373;
+}

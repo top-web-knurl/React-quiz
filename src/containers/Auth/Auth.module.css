@@ -1,0 +1,11 @@
+.Auth{
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    flex-grow: 1;
+}
+.Auth > div{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
