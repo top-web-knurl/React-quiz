@@ -1,0 +1,47 @@
+.Input input {
+    display: inline-block;
+    font-size: 16px;
+    color: #FFF373;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 1px 1px #fff373;
+    border: 1px solid #FFF373;
+    border-radius: 10px;
+    height: 45px;
+    margin: 0;
+    padding: 5px 15px;
+}
+
+.Input legend {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0 0 10px;
+}
+
+.Input input:disabled {
+    opacity: .7;
+}
+
+.Input input:focus {
+    outline: none;
+    border-color: rgba(156, 42, 250, 0.9);
+    box-shadow: 0px 0px 1px 1px rgba(156, 42, 250, 0.7);
+}
+
+.Input input::placeholder {
+    color: #FFF373;
+}
+.Input span{
+    display: inline-block;
+    line-height: 1.1;
+    font-weight: 600;
+    padding-top: 5px;
+    padding-left: 5px;
+    color: #ff0000;
+}
+.Input.invalid {
+    color: #ff0000;
+}
+.Input.invalid  input {
+    border-color: #ff0000;
+    box-shadow: none;
+}

@@ -3,6 +3,7 @@
     justify-content: center;
     margin-top: 10vh;
     flex-grow: 1;
+    padding: 20px;
 }
 .Auth > div{
     width: 100%;

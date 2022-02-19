@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./Auth.module.css";
 import Button from "../../components/UI/Button/Button";
 import Form from "../../components/UI/Form/Form";
+import Input from "../../components/UI/Input/Input";
 class Auth extends Component {
 
   loginHandler = () => {
@@ -20,14 +21,17 @@ class Auth extends Component {
 
           <Form>
             <fieldset>
-              <label >
-                <legend>Поле 1</legend>
-                <input type="text" />
-              </label>
-              <label >
-                <legend>Поле 2</legend>
-                <input type="text" />
-              </label>
+              <Input
+                legend='Ваш email'
+                type="Email"
+              >
+              </Input>
+              <Input
+                legend='Пароль'
+                type="password"
+              >
+              </Input>
+
 
             </fieldset>
             <fieldset>
