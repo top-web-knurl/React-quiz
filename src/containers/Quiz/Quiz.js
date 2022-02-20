@@ -42,7 +42,7 @@ class Quiz extends Component {
             //берем единственное значение для проверки, если success то выходим
             // что бы при двойном клике не пропускало следущий вопрос
             const values = Object.values(this.state.answerState)[0]
-            if (values === 'success') {
+            if (values) {
                 return;
             }
 
@@ -64,22 +64,8 @@ class Quiz extends Component {
                 results
             })
 
-            const timeout = window.setTimeout(() => {
-
-                if (this.isQuizFinished()) {
-                    this.setState({
-                        isFinished: true,
-                    })
-                } else {
-                    this.setState({
-                        activeQuestion: this.state.activeQuestion + 1,
-                        answerState: null
-                    })
-                }
-                window.clearTimeout(timeout);
-            }, 950)
-
         } else {
+
             results[question.quizId] = 'fail';
             this.setState({
                 answerState: {
@@ -88,6 +74,21 @@ class Quiz extends Component {
                 results
             })
         }
+
+        const timeout = window.setTimeout(() => {
+
+            if (this.isQuizFinished()) {
+                this.setState({
+                    isFinished: true,
+                })
+            } else {
+                this.setState({
+                    activeQuestion: this.state.activeQuestion + 1,
+                    answerState: null
+                })
+            }
+            window.clearTimeout(timeout);
+        }, 500)
     }
 
     isQuizFinished() {
