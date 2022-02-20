@@ -98,7 +98,7 @@ class Auth extends Component {
           type={type}
           value={value}
           valid={valid}
-          legend={name}
+          inputTitle={name}
           touched={touched}
           errorMessage={errorMessage}
           shouldValidate={!!validation}

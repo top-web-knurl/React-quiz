@@ -6,12 +6,12 @@ function isInValid({valid, touched, shouldValidate}) {
 }
 
 const Input = props => {
-    const { value, disabled, type = 'text', legend, onChange, errorMessage} = props;
+    const { value = '', disabled, type = 'text', inputTitle, onChange, errorMessage} = props;
     const { Input, invalid } = classes;
     const validFlag = isInValid(props);
     return (
         <label className={`${Input} ${validFlag ? invalid : ''}`}>
-            {legend ? <legend>{legend}</legend> : null}
+            {inputTitle ? <legend>{inputTitle}</legend> : null}
             <input
                 className={Input}
                 disabled={disabled}

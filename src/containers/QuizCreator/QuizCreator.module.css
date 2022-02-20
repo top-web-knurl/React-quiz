@@ -1,0 +1,13 @@
+.QuizCreator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.QuizCreatorContainer {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+}

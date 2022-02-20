@@ -39,7 +39,7 @@ class Quiz extends Component {
     onAnswerClickHandler = answerId => {
 
         if (this.state.answerState) {
-            //берем единственное значение для проверки, если success то выходим
+            //берем единственное значение для проверки, если оно уже есть то выходим
             // что бы при двойном клике не пропускало следущий вопрос
             const values = Object.values(this.state.answerState)[0]
             if (values) {
@@ -49,7 +49,6 @@ class Quiz extends Component {
         }
         const question = this.state.quiz[this.state.activeQuestion];//текущий вопрос
         const results = this.state.results;
-
 
         if (question.rightAnsverId === answerId) {//проверяем правильный ли ответ
 
@@ -73,6 +72,7 @@ class Quiz extends Component {
                 },
                 results
             })
+            
         }
 
         const timeout = window.setTimeout(() => {
@@ -81,11 +81,14 @@ class Quiz extends Component {
                 this.setState({
                     isFinished: true,
                 })
+
             } else {
+
                 this.setState({
                     activeQuestion: this.state.activeQuestion + 1,
                     answerState: null
                 })
+                
             }
             window.clearTimeout(timeout);
         }, 500)
