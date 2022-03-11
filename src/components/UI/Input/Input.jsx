@@ -6,7 +6,7 @@ function isInValid({valid, touched, shouldValidate}) {
 }
 
 const Input = props => {
-    const { value = '', disabled, type = 'text', inputTitle, onChange, errorMessage} = props;
+    const { value = '', disabled, type = 'text', inputTitle, onChange, errorMessage,} = props;
     const { Input, invalid } = classes;
     const validFlag = isInValid(props);
     return (
