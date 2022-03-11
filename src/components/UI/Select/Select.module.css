@@ -1,5 +1,3 @@
-.SelectWrapper {}
-
 .Select {
     display: flex;
     flex-direction: column;

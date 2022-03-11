@@ -3,14 +3,15 @@ import Button from "../../components/UI/Button/Button";
 import Form from "../../components/UI/Form/Form";
 import Input from "../../components/UI/Input/Input";
 import Select from "../../components/UI/Select/Select";
-import { createControl } from "../../formFramework/formFramework";
+import { createControl, validate, validateForm } from "../../formFramework/formFramework";
 import classes from './QuizCreator.module.css';
 
 function createOptonControl(name, error, required = true) {
-  return createControl({
-    inputName: name,
-    errorMessage: error
-  },
+  return createControl(
+    {
+      inputName: name,
+      errorMessage: error
+    },
     {
       required: required
     }
@@ -27,16 +28,17 @@ function createFormControls() {
   }
 }
 
-class QuizCreator extends Component {
+export default class QuizCreator extends Component {
 
 
   state = {
     quiz: [],
-    formConstrols: createFormControls(),
-    rightAnswerId: 1
+    isFormValid: false,
+    rightAnswerId: 1,
+    formControls: createFormControls(),
   }
 
-  addQuestionHandler = () => {
+  addQuestionHandler = (event) => {
 
   }
 
@@ -44,17 +46,27 @@ class QuizCreator extends Component {
 
   }
 
-  changeHandler = (value, control) => {
+  changeHandler = (value, controlName) => {
 
-  }
-  selectChangeHandler = event =>{
+    const formControls = { ...this.state.formControls };
+    const control = { ...formControls[controlName] };
+
+    control.touched = true;
+    control.value = value;
+    control.valid = validate(control.value, control.validation);
+
+    formControls[controlName] = control;
+
     this.setState({
-      rightAnswerId: Number(event.target.value)
-    })
+      formControls,
+      isFormValid: validateForm(formControls)
+    });
   }
+
+
   renderControls() {
-    return Object.keys(this.state.formConstrols).map((controlName, index) => {
-      const { inputName, value, valid, validation, touched, errorMessage } = this.state.formConstrols[controlName]
+    return Object.keys(this.state.formControls).map((controlName, index) => {
+      const { value, inputName, valid, touched, errorMessage, validation } = this.state.formControls[controlName]
 
       return (
         <Input
@@ -70,6 +82,13 @@ class QuizCreator extends Component {
       )
     });
   }
+
+  selectChangeHandler = event => {
+    this.setState({
+      rightAnswerId: Number(event.target.value)
+    })
+  }
+
   render() {
     const { QuizCreator, QuizCreatorContainer, QuizCreatorFieldest } = classes;
     return (
@@ -77,28 +96,27 @@ class QuizCreator extends Component {
         <div className={QuizCreatorContainer}>
           <h1>Создание теста</h1>
           <Form>
-    
+
             <fieldset className={QuizCreatorFieldest}>
               {this.renderControls()}
               <Select
-              title="Правильный ответ"
-              value={this.state.rightAnswerId}
-              options={[
-                {text: 1, value:1},
-                {text: 2, value:2},
-                {text: 3, value:3},
-                {text: 4, value:4}
-              ]}
-              onChange={this.selectChangeHandler}
+                title="Правильный ответ"
+                value={this.state.rightAnswerId}
+                onChange={this.selectChangeHandler}
+                options={[
+                  { text: 1, value: 1 },
+                  { text: 2, value: 2 },
+                  { text: 3, value: 3 },
+                  { text: 4, value: 4 }
+                ]}
               />
             </fieldset>
-            
 
             <fieldset>
-
               <Button
                 type="success"
                 onClick={this.addQuestionHandler}
+                disabled={!this.state.isFormValid}
               >
                 Добавить вопрос
               </Button>
@@ -107,11 +125,12 @@ class QuizCreator extends Component {
                 type="primary"
                 onClick={this.createQuizHandler}
                 onChange={this.selectChangeHandler}
+                disabled={this.state.quiz.length === 0}
               >
-                Завершить
+                Создать тест
               </Button>
-
             </fieldset>
+
           </Form>
         </div>
       </div>
@@ -119,4 +138,4 @@ class QuizCreator extends Component {
   }
 }
 
-export default QuizCreator;
+

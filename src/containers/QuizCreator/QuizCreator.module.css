@@ -11,15 +11,15 @@
     max-width: 920px;
     margin: 0 auto;
 }
-.QuizCreatorFieldest{
 
-}
-.QuizCreatorFieldest label:first-child{
+.QuizCreatorFieldest label:first-child {
     flex: 100%;
 }
-.QuizCreatorFieldest label:last-child{
+
+.QuizCreatorFieldest label:last-child {
     flex: 100%;
 }
-form .QuizCreatorFieldest label{
+
+form .QuizCreatorFieldest label {
     flex: 49%;
 }
