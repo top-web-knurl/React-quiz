@@ -1,11 +1,12 @@
 export function createControl(config, validation) {
-
+    let id = 0;
     return {
         ...config,
         validation,
         valid: !validation,
         touched: false,
-        value: ''
+        value: '',
+        id: id++
     }
 }
 export function validate(value, validation = null) {

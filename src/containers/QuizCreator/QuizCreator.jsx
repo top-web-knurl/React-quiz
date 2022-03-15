@@ -7,15 +7,17 @@ import { createControl, validate, validateForm } from "../../formFramework/formF
 import classes from './QuizCreator.module.css';
 
 function createOptonControl(name, error, required = true) {
+
   return createControl(
     {
       inputName: name,
-      errorMessage: error
+      errorMessage: error,
     },
     {
       required: required
     }
   )
+  
 }
 
 function createFormControls() {
@@ -37,9 +39,35 @@ export default class QuizCreator extends Component {
     rightAnswerId: 1,
     formControls: createFormControls(),
   }
-
+  
   addQuestionHandler = (event) => {
 
+    const quiz = this.state.quiz.concat();// concat() без параметров для клонирования массива
+    const index = quiz.length + 1;
+    const {question, option1, option2, option3, option4} =  this.state.formControls;
+    const questionItem = {
+     
+       question: question,
+       id:index,
+       rightAnswerId: this.state.rightAnswerId,
+
+       answers : [
+         {text:option1.value, id:option1.id},
+         {text:option2.value, id:option2.id},
+         {text:option3.value, id:option3.id},
+         {text:option4.value, id:option4.id},
+
+       ]
+    }
+
+      quiz.push(questionItem);
+
+      this.setState({
+        quiz,
+        isFormValid: false,
+        rightAnswerId: 1,
+        formControls: createFormControls(),
+      })
   }
 
   createQuizHandler = () => {
@@ -59,7 +87,7 @@ export default class QuizCreator extends Component {
 
     this.setState({
       formControls,
-      isFormValid: validateForm(formControls)
+      isFormValid: validateForm(formControls),
     });
   }
 
@@ -88,8 +116,9 @@ export default class QuizCreator extends Component {
       rightAnswerId: Number(event.target.value)
     })
   }
-
+ 
   render() {
+    console.log(this.state.quiz);
     const { QuizCreator, QuizCreatorContainer, QuizCreatorFieldest } = classes;
     return (
       <div className={QuizCreator}>
