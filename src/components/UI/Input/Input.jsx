@@ -16,7 +16,7 @@ const Input = props => {
                 className={Input}
                 disabled={disabled}
                 type={type}
-                value={value.trim()}
+                value={value}
                 onChange={onChange}
             />
 

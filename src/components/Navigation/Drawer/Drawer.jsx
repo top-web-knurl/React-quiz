@@ -10,7 +10,7 @@ const links = [
 const { active } = classes;
 
 class Drawer extends Component {
-   
+
     clickHandler = () => {
         this.props.onClose();
     }

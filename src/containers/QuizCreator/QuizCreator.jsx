@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Button from "../../components/UI/Button/Button";
 import Form from "../../components/UI/Form/Form";
 import Input from "../../components/UI/Input/Input";
 import Select from "../../components/UI/Select/Select";
 import { createControl, validate, validateForm } from "../../formFramework/formFramework";
 import classes from './QuizCreator.module.css';
+
 
 function createOptonControl(name, error, required = true) {
 
@@ -17,7 +19,7 @@ function createOptonControl(name, error, required = true) {
       required: required
     }
   )
-  
+
 }
 
 function createFormControls() {
@@ -39,14 +41,13 @@ export default class QuizCreator extends Component {
     rightAnswerId: 1,
     formControls: createFormControls(),
   }
-  
-  addQuestionHandler = (event) => {
 
+  addQuestionHandler = () => {
     const quiz = this.state.quiz.concat();// concat() без параметров для клонирования массива
     const index = quiz.length + 1;
     const {question, option1, option2, option3, option4} =  this.state.formControls;
     const questionItem = {
-     
+
        question: question,
        id:index,
        rightAnswerId: this.state.rightAnswerId,
@@ -70,9 +71,23 @@ export default class QuizCreator extends Component {
       })
   }
 
-  createQuizHandler = () => {
+  createQuizHandler = async () => {
+    const url = 'https://react-quiz-e290c-default-rtdb.europe-west1.firebasedatabase.app';
+
+    try{
+      await axios.post(`${url}/quizes.json`, this.state.quiz);
+      this.setState({
+        quiz: [],
+        isFormValid: false,
+        rightAnswerId: 1,
+        formControls: createFormControls(),
+      })
+    } catch(e){
+      console.log(e);
+    }
 
   }
+
 
   changeHandler = (value, controlName) => {
 
@@ -116,9 +131,8 @@ export default class QuizCreator extends Component {
       rightAnswerId: Number(event.target.value)
     })
   }
- 
+
   render() {
-    console.log(this.state.quiz);
     const { QuizCreator, QuizCreatorContainer, QuizCreatorFieldest } = classes;
     return (
       <div className={QuizCreator}>

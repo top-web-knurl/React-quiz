@@ -3,6 +3,7 @@ import classes from "./Auth.module.css";
 import Button from "../../components/UI/Button/Button";
 import Form from "../../components/UI/Form/Form";
 import Input from "../../components/UI/Input/Input";
+import { validateForm } from "../../formFramework/formFramework";
 import is from 'is_js';
 
 class Auth extends Component {
@@ -61,7 +62,7 @@ class Auth extends Component {
       isValid = (value.length >= validation.minLength) && isValid;
     }
 
-    console.log(isValid);
+
     return isValid;
   }
 
@@ -76,14 +77,8 @@ class Auth extends Component {
 
     formContarols[controlName] = control;
 
-    let isFormValid = true;
-
-    Object.keys(formContarols).forEach(name => {
-        isFormValid = formContarols[name] && isFormValid;
-    })
-
     this.setState({
-      isFormValid,
+      isFormValid: validateForm(formContarols),
       formContarols
     });
   }
@@ -91,7 +86,7 @@ class Auth extends Component {
   renderInputs = () => {
     return Object.keys(this.state.formContarols).map((controlName, index) => {
       const { type, value, name, valid, touched, errorMessage, validation } = this.state.formContarols[controlName];
-   
+
       return (
         <Input
           key={index}
@@ -112,7 +107,9 @@ class Auth extends Component {
   render() {
     const { Auth } = classes;
     return (
+
       <div className={Auth}>
+        { console.log(this.state.isFormValid)}
         <div>
           <h1>Авторизация</h1>
 
@@ -124,14 +121,14 @@ class Auth extends Component {
               <Button
                 type="success"
                 onClick={this.loginHandler}
-                disabled={this.state.isFormValid}
+                disabled={!this.state.isFormValid}
               >
                 Войти
               </Button>
               <Button
                 type="primary"
                 onClick={this.registerHandler}
-                disabled={this.state.isFormValid}
+                disabled={!this.state.isFormValid}
               >
                 Регистрация
               </Button>
