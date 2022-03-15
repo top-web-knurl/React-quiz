@@ -13,14 +13,14 @@ const FinishedQuiz = props => {
         }
         return total;
     }, 0)
-  
+
     return (
         <div className={FinishedQuiz}>
             <ul>
                 {quiz.map((quizItem, index) => {
                     let flagResult = results[quizItem.quizId] === 'fail' ? false : true
                     return (
-                        
+
                         <li key={index} className={flagResult ? success : fail}>
                             <strong>{index + 1}.</strong>
                             <span>{quizItem.question}</span>
@@ -40,8 +40,8 @@ const FinishedQuiz = props => {
 
             <nav>
                 <Button onClick={onRestartQuiz}>Повторить</Button>
-                <Button><Link to='/quiz'>Перейти в список тестов</Link></Button>
-                
+                <Link to='/quiz'><Button>Перейти в список тестов</Button></Link>
+
             </nav>
         </div>
     )
