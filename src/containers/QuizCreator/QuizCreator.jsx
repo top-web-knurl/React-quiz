@@ -6,7 +6,8 @@ import Input from "../../components/UI/Input/Input";
 import Select from "../../components/UI/Select/Select";
 import { createControl, validate, validateForm } from "../../formFramework/formFramework";
 import classes from './QuizCreator.module.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 function createOptonControl(name, error, required = true) {
 
@@ -22,8 +23,10 @@ function createOptonControl(name, error, required = true) {
 
 }
 
-function createFormControls() {
+function createFormControls(nameQuiz = null,) {
+
   return {
+    nameQuiz: nameQuiz ? nameQuiz : createOptonControl('Введите название теста', 'Название теста не может быть пустым'),
     question: createOptonControl('Введите вопрос', 'Вопрос не может быть пустым'),
     option1: createOptonControl("Вариант 1", "Заполните поле"),
     option2: createOptonControl("Вариант 2", "Заполните поле"),
@@ -36,6 +39,7 @@ export default class QuizCreator extends Component {
 
 
   state = {
+    nameQuiz: false,
     quiz: [],
     isFormValid: false,
     rightAnswerId: 1,
@@ -45,44 +49,47 @@ export default class QuizCreator extends Component {
   addQuestionHandler = () => {
     const quiz = this.state.quiz.concat();// concat() без параметров для клонирования массива
     const index = quiz.length + 1;
-    const {question, option1, option2, option3, option4} =  this.state.formControls;
+    const { nameQuiz, question, option1, option2, option3, option4 } = this.state.formControls;
     const questionItem = {
 
-       question: question,
-       id:index,
-       rightAnswerId: this.state.rightAnswerId,
+      nameQuiz: nameQuiz.value,
+      question: question,
+      id: index,
+      rightAnswerId: this.state.rightAnswerId,
 
-       answers : [
-         {text:option1.value, id:option1.id},
-         {text:option2.value, id:option2.id},
-         {text:option3.value, id:option3.id},
-         {text:option4.value, id:option4.id},
+      answers: [
+        { text: option1.value, id: 1 },
+        { text: option2.value, id: 2 },
+        { text: option3.value, id: 3 },
+        { text: option4.value, id: 4 },
 
-       ]
+      ]
     }
 
-      quiz.push(questionItem);
+    quiz.push(questionItem);
 
-      this.setState({
-        quiz,
-        isFormValid: false,
-        rightAnswerId: 1,
-        formControls: createFormControls(),
-      })
+    this.setState({
+      nameQuiz,
+      quiz,
+      isFormValid: false,
+      rightAnswerId: 1,
+      formControls: createFormControls(nameQuiz),
+    })
   }
 
   createQuizHandler = async () => {
     const url = 'https://react-quiz-e290c-default-rtdb.europe-west1.firebasedatabase.app';
 
-    try{
+    try {
       await axios.post(`${url}/quizes.json`, this.state.quiz);
       this.setState({
         quiz: [],
         isFormValid: false,
         rightAnswerId: 1,
         formControls: createFormControls(),
+        nameQuiz: false,
       })
-    } catch(e){
+    } catch (e) {
       console.log(e);
     }
 
@@ -113,6 +120,7 @@ export default class QuizCreator extends Component {
 
       return (
         <Input
+          disabled={(controlName === 'nameQuiz') ? this.state.nameQuiz : false}
           key={index}
           inputTitle={inputName}
           value={value}
@@ -126,6 +134,37 @@ export default class QuizCreator extends Component {
     });
   }
 
+  renderQuizQuestion(quiz, classes) {
+    const {QuizQuestion, success, fail} = classes;
+    return (
+      <ul className={QuizQuestion}>
+
+        {this.state.nameQuiz ? <h2>Название теста: {this.state.nameQuiz.value}</h2> : null}
+        {quiz.map((questions, index) => {
+          return (
+            <li key={index}>
+              <h3>{index + 1}. вопрос: {questions.question.value}</h3>
+              <h4>Ответы:</h4>
+              <ol>
+                {questions.answers.map((answer, key) => {
+                  return <li
+                    className={(answer.id === questions.rightAnswerId) ? success : fail}
+                    key={key}
+                  >
+                   <span>{answer.text}</span>
+                    <FontAwesomeIcon
+                      icon={(answer.id === questions.rightAnswerId) ?  faCheck : faTimes}
+                      size="lg"
+                  />
+                  </li>
+                })}
+              </ol>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
   selectChangeHandler = event => {
     this.setState({
       rightAnswerId: Number(event.target.value)
@@ -133,8 +172,10 @@ export default class QuizCreator extends Component {
   }
 
   render() {
-    const { QuizCreator, QuizCreatorContainer, QuizCreatorFieldest } = classes;
+    const { QuizCreator, QuizCreatorContainer, QuizCreatorFieldest} = classes;
+
     return (
+
       <div className={QuizCreator}>
         <div className={QuizCreatorContainer}>
           <h1>Создание теста</h1>
@@ -175,8 +216,14 @@ export default class QuizCreator extends Component {
             </fieldset>
 
           </Form>
+
+          {this.state.quiz.length ?
+            this.renderQuizQuestion(this.state.quiz, classes)
+            : null}
+
         </div>
       </div>
+
     );
   }
 }

@@ -10,15 +10,16 @@ class QuizList extends Component {
   }
 
   renderQuizes() {
-    console.log(this.state.quizes);
-    return this.state.quizes.map(quiz => {
+
+    return this.state.quizes.map((quiz, index) => {
       return (
         <li
           key={quiz.id}
         >
           <NavLink to={'/quiz/' + quiz.id}>
-             {quiz.name}
+            {quiz.name}
           </NavLink>
+
         </li>
       )
     })
@@ -35,15 +36,18 @@ class QuizList extends Component {
     try {
       const res = await axios.get(`${url}/quizes.json`);
       let quizes = [];
-      Object.keys(res.data).forEach((key, index) => {
+
+      Object.keys(res.data).forEach(key => {
         quizes.push({
           id: key,
-          name: `Первый вопрос теста: ${res.data[key][0].question.value}`
+          name: `${res.data[key][0].nameQuiz}`
         })
       })
+
       this.setState({
         quizes,
       })
+
     } catch (e) {
       console.log(e);
     }
@@ -56,9 +60,10 @@ class QuizList extends Component {
       <div className={QuizList}>
         <div className={QuizListWrapper}>
           <h1>Список тестов</h1>
-          <ul>
+          <hr />
+          <ol>
             {this.renderQuizes()}
-          </ul>
+          </ol>
         </div>
       </div>
     );

@@ -12,14 +12,59 @@
     margin: 0 auto;
 }
 
-.QuizCreatorFieldest label:first-child {
-    flex: 100%;
-}
-
 .QuizCreatorFieldest label:last-child {
     flex: 100%;
 }
 
 form .QuizCreatorFieldest label {
     flex: 49%;
+}
+
+.QuizQuestion {
+    margin: 25px 0;
+    padding: 15px;
+    color: #FFF373;
+    box-shadow: 0px 0px 4px 2px #fff373;
+    border: 4px solid #FFF373;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.QuizQuestion h2,
+.QuizQuestion h3,
+.QuizQuestion h4 {
+    padding: 0;
+    margin: 0 0 10px;
+}
+
+.QuizQuestion ol {
+    padding: 0 0 0 19px;
+}
+
+.QuizQuestion ol>li {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0 0 5px;
+}
+
+.QuizQuestion>li span {
+    margin-right: 6px;
+}
+
+.QuizQuestion>li:not(:last-child, :only-child) {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #FFF373;
+}
+
+.success {
+    color: rgb(64, 180, 35);
+}
+
+.success svg {
+    color: rgb(64, 180, 35);
+}
+
+.fail svg {
+    color: #ce1e1efb;
 }

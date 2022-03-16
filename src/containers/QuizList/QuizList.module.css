@@ -7,7 +7,7 @@
 }
 
 .QuizListWrapper {
-    max-width: 600px;
+    max-width: 920px;
     padding: 20px;
     color: #FFF373;
     box-shadow: 0px 0px 4px 2px #fff373;
@@ -20,30 +20,30 @@
     margin: 0 0 20px;
 }
 
-.QuizList ul {
-    padding: 0 15px 25px 15px;
+.QuizList ol {
+    padding: 0 0 25px 15px;
 }
 
-.QuizList ul li {
+.QuizList ol li {
     margin: 0 0 10px;
 }
 
-.QuizList ul li a {
+.QuizList ol li a {
     color: #FFF373;
-    font-size: 24px;
+    font-size: 18px;
     padding: 3px 0;
     text-decoration: none;
     position: relative;
 }
 
-.QuizList ul li a.active,
-.QuizList ul li a:hover,
-.QuizList ul li a:active,
-.QuizList ul li a:focus {
+.QuizList ol li a.active,
+.QuizList ol li a:hover,
+.QuizList ol li a:active,
+.QuizList ol li a:focus {
     opacity: .85;
 }
 
-.QuizList ul li a::after {
+.QuizList ol li a::after {
     content: "";
     display: block;
     position: absolute;
@@ -58,10 +58,10 @@
     border-radius: 30%;
 }
 
-.QuizList ul li a.active::after,
-.QuizList ul li a:hover::after,
-.QuizList ul li a:active::after,
-.QuizList ul li a:focus::after {
+.QuizList ol li a.active::after,
+.QuizList ol li a:hover::after,
+.QuizList ol li a:active::after,
+.QuizList ol li a:focus::after {
     bottom: 0;
     opacity: 1;
     transform: scaleX(1);
