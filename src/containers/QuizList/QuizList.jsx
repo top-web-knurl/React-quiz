@@ -31,7 +31,7 @@ class QuizList extends Component {
   //  Это хорошее место для создания сетевых запросов.
   // для работы с беком дом дерево должно быть уже отрисовано
   async componentDidMount() {
-    const url = 'https://react-quiz-e290c-default-rtdb.europe-west1.firebasedatabase.app';
+    const url = 'https://quizes-test-default-rtdb.europe-west1.firebasedatabase.app';
 
     try {
       const res = await axios.get(`${url}/quizes.json`);

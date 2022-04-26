@@ -78,7 +78,7 @@ export default class QuizCreator extends Component {
   }
 
   createQuizHandler = async () => {
-    const url = 'https://react-quiz-e290c-default-rtdb.europe-west1.firebasedatabase.app';
+    const url = 'https://quizes-test-default-rtdb.europe-west1.firebasedatabase.app';
 
     try {
       await axios.post(`${url}/quizes.json`, this.state.quiz);

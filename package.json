@@ -22,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "server": "json-server --watch server/quizes.json -p 3001",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
