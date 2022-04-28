@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../../axios/axios-quiz";
 import Button from "../../components/UI/Button/Button";
 import Form from "../../components/UI/Form/Form";
 import Input from "../../components/UI/Input/Input";
@@ -23,7 +23,7 @@ function createOptonControl(name, error, required = true) {
 
 }
 
-function createFormControls(nameQuiz = null,) {
+function createFormControls(nameQuiz = null) {
 
   return {
     nameQuiz: nameQuiz ? nameQuiz : createOptonControl('Введите название теста', 'Название теста не может быть пустым'),
@@ -50,10 +50,11 @@ export default class QuizCreator extends Component {
     const quiz = this.state.quiz.concat();// concat() без параметров для клонирования массива
     const index = quiz.length + 1;
     const { nameQuiz, question, option1, option2, option3, option4 } = this.state.formControls;
+
     const questionItem = {
 
       nameQuiz: nameQuiz.value,
-      question: question,
+      question: question.value,
       id: index,
       rightAnswerId: this.state.rightAnswerId,
 
@@ -78,10 +79,9 @@ export default class QuizCreator extends Component {
   }
 
   createQuizHandler = async () => {
-    const url = 'https://quizes-test-default-rtdb.europe-west1.firebasedatabase.app';
 
     try {
-      await axios.post(`${url}/quizes.json`, this.state.quiz);
+      await axios.post('/quizes.json', this.state.quiz);
       this.setState({
         quiz: [],
         isFormValid: false,

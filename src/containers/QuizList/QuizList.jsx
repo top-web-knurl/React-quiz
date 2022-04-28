@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/axios-quiz";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Loader from "../../components/UI/Loader/Loader";
@@ -34,10 +34,9 @@ class QuizList extends Component {
   //  Это хорошее место для создания сетевых запросов.
   // для работы с беком дом дерево должно быть уже отрисовано
   async componentDidMount() {
-    const url = 'https://quizes-test-default-rtdb.europe-west1.firebasedatabase.app';
 
     try {
-      const res = await axios.get(`${url}/quizes.json`);
+      const res = await axios.get('/quizes.json');
       let quizes = [];
 
       Object.keys(res.data).forEach(key => {
