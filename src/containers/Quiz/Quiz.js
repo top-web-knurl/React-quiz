@@ -100,7 +100,6 @@ class Quiz extends Component {
         try {
             const response = await axios.get(`/quizes/${match.params.id}.json`);
             const quiz = response.data;
-            console.log(quiz);
             this.setState({
                 quiz,
                 loading: false
@@ -113,7 +112,7 @@ class Quiz extends Component {
   
     render() {
         const { Quiz, QuizWrapper } = classes;
-        console.log(this.state.quiz);
+
         return (
             <div className={Quiz}>
                 <div className={QuizWrapper}>
