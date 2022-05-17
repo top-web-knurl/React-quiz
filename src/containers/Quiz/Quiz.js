@@ -13,6 +13,7 @@ export function withRouter(Children) {
         return <Children {...props} match={match} />
     }
 }
+
 class Quiz extends Component {
 
     state = {
