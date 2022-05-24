@@ -5,7 +5,8 @@ import Form from "../../components/UI/Form/Form";
 import Input from "../../components/UI/Input/Input";
 import { validateForm } from "../../formFramework/formFramework";
 import is from 'is_js';
-import axios from "axios";
+import { connect } from "react-redux";
+import { autch } from "../../store/actions/autch";
 class Auth extends Component {
 
   state = {
@@ -38,40 +39,20 @@ class Auth extends Component {
     }
   }
 
-  loginHandler = async () => {
-    const authData = {
-      email: this.state.formContarols.email.value,
-      password: this.state.formContarols.password.value,
-      returnSecureToken: true
-    }
-    try {
-      const response = await axios.post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC5ntFtzrgbJEKHlNg3WIcuKdgjLFrYmeg',
-        authData
-      )
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-
+  loginHandler = () => {
+      this.props.autch(
+      this.state.formContarols.email.value,
+      this.state.formContarols.password.value,
+      true
+    )
   }
 
-  registerHandler = async () => {
-    const authData = {
-      email: this.state.formContarols.email.value,
-      password: this.state.formContarols.password.value,
-      returnSecureToken: true
-    }
-    try {
-      const response = await axios.post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC5ntFtzrgbJEKHlNg3WIcuKdgjLFrYmeg',
-        authData
-      )
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-
+  registerHandler = () => {
+    this.props.autch(
+      this.state.formContarols.email.value,
+      this.state.formContarols.password.value,
+      false
+    )
   }
 
   validateControl(value, validation) {
@@ -169,4 +150,10 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+function mapDispatchToProps(dispatch) {
+    return {
+      autch: (email, password, isLogin) => dispatch(autch(email, password, isLogin))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Auth);
