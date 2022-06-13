@@ -15,13 +15,11 @@ export function autch(email, password, isLogin) {
             const response = await axios.post(url, authData);
             const { idToken, localId, expiresIn } = response.data;
             const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-            console.log(expirationDate);
             localStorage.setItem('token', idToken);//токены который мы получаем с бд
             localStorage.setItem('userId', localId);
             localStorage.setItem('expirationDate', expirationDate);// время хранения токенов для авторизации
             dispatch(auchSuccess(idToken))
-            dispatch(autoLogout(idToken))
-            console.log(response.data);
+            dispatch(autoLogout(expiresIn))
         } catch (error) {
             console.log(error);
         }
@@ -35,9 +33,11 @@ export function auchSuccess(token) {
 }
 
 export function autoLogout(time) {
-    return async dispatch => {
-        setTimeout(logout(), time * 1000)
-    }
+    return dispatch => {
+        setTimeout(() => {
+          dispatch(logout())
+        }, time * 1000)
+      }
 }
 
 export function logout() {
@@ -46,5 +46,22 @@ export function logout() {
     localStorage.removeItem('expirationDate');
     return {
         type: AUTCH_LOGOUT
+    }
+}
+
+export function autoLogin() {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(logout())
+        } else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            if (expirationDate <= new Date()) {
+                dispatch(logout())
+            } else {
+                dispatch(auchSuccess(token));
+                dispatch(autoLogout((expirationDate.getTime - new Date().getTime) / 1000));
+            }
+        }
     }
 }

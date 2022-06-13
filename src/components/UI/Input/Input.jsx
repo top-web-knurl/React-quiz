@@ -17,7 +17,8 @@ const Input = props => {
                 disabled={disabled}
                 type={type}
                 value={value}
-                onChange={onChange}
+                onChange={onChange} 
+                autoComplete="on"
             />
 
             {validFlag ? <span>{errorMessage}</span> : null}

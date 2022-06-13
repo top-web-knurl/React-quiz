@@ -45,6 +45,7 @@ class Auth extends Component {
       this.state.formContarols.password.value,
       true
     )
+
   }
 
   registerHandler = () => {
@@ -119,7 +120,7 @@ class Auth extends Component {
     return (
 
       <div className={Auth}>
-        {console.log(this.state.isFormValid)}
+      
         <div>
           <h1>Авторизация</h1>
 
